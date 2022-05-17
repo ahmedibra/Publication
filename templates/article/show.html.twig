@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+<style>
+    .articles{
+    	border-radius: 10px;
+    	box-shadow: 0 4px 16px rgba(0,0,0,.25);
+    	padding: 16px 20px ;}
+    img{
+    		border-radius: 10px;
+    		box-shadow: 0 4px 16px rgba(0,0,0,.25);
+    	}
+</style>
+<section class="contact-section">
+            <div class="container">
+ 
+                <div class="row">
+                    <div class="col-12">
+<h1>Nos publications</h1>
+<div class="container">
+<section class="articles" class="mb-5">
+<article>
+<h2>{{article.title}}</h2>
+<div class="metadata">{{article.CreateAt | date('d-m-y')}} à {{article.CreateAt | date('H:i'
+)}}<span class="badge badge-success">{{article.comments| length}}Comment</span>
+</div>
+<div class="content">
+	<img src="/images/products/{{ article.imageName}}">
+	<p>{{article.Texte}}
+</p>
+<a href="{{ asset('uploads/brochures/' ~ article.brochureFilename) }}"><img src="https://img.icons8.com/officel/80/000000/pdf.png"/></a>
+</div>
+</article>
+</section>
+{% for comment in article.comments%}
+<div class="comments-area">
+                     <div class="comment-list">
+                        <div class="single-comment justify-content-between d-flex">
+                           <div class="user justify-content-between d-flex">
+                              <div class="desc">
+                                 <p class="comment">
+                                    {{comment.content}}
+                                 </p>
+                                 <div class="d-flex justify-content-between">
+                                    <div class="d-flex align-items-center">
+									
+                                       <h5>
+                                          <a href="#">{{ comment.user.firstName }} {{ comment.user.lastName}} </a>
+                                       </h5>
+                                       <p class="date" style="color:green;">{{comment.createdAt |date('d-m-y')}} à {{ comment.createdAt | date('H:i')}} </p>
+									</div> {% if app.user ==  comment.user %}
+                                    <div class="reply-btn">
+                                       <a href="{{ path('comment_edit', {'id1' : article.id, 'id' : comment.id} ) }}" class="btn-reply text-uppercase" style="color:green;">Modifier</a>
+                                       
+                                    </div>
+                                    <div class="reply-btn">
+                                       <a href=" {{ path('comment_delete', {'id1' : article.id, 'id' : comment.id} ) }}" class="btn-reply text-uppercase" style="color:green;">Supprimer</a>
+                                       
+                                    </div>
+                                    {% endif %}
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                  </div>
+
+
+
+
+
+{% endfor %}
+<hr>
+{% if not app.user %}
+<h3>Vous devez vous connecter pour commenter</h3>
+<a class="btn btn-info" href="{{path('app_login')}}">Se connecter</a>
+{% else %}
+<section>
+<h2>Ajouter un commentaire</h2>
+{{form_start(commentForm)}}
+{{form_widget(commentForm)}}
+<button class="btn btn-success mb-5">commentez</button>
+{{ form_end(commentForm)}}
+</section>
+{% endif %}
+
+</div></div>
+</div></div></div></section>
+{% endblock %}

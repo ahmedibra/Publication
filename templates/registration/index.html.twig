@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% form_theme registrationForm 'bootstrap_4_layout.html.twig' %}
+{% block title %}Créer Compte{% endblock %}
+
+{% block body %}
+<section class="contact-section">
+            <div class="container">
+ 
+                <div class="row">
+                    <div class="col-12">
+<h1 class="mb-5 mt-5">Créer un compte</h1>
+{{form_start(registrationForm)}}
+{{form_widget(registrationForm)}}
+
+<button class="btn btn-success">Créer Compte</button>
+<hr>
+<h3><a href={{ path('app_login') }}>Se connecter</a></h3>
+{{form_end(registrationForm)}}
+
+</div>
+</div>
+</div>
+</section>
+{% endblock %}

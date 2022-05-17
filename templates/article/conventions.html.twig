@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+<style>
+    .articles{
+    	border-radius: 10px;
+    	box-shadow: 0 4px 16px rgba(0,0,0,.25);
+    	padding: 16px 20px ;}
+    img{
+    		max-width: 80px!important;
+    max-height: 80px!important;
+    vertical-align: middle;
+    	}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+ 
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 20px;
+  text-decoration: none;
+}
+
+li a:hover {
+background-color: #000;
+}
+.titre {
+  display: -webkit-box;
+    font-size: 14px;
+    font-weight:bold;
+    color: #05617a;
+}
+</style>
+<section class="contact-section">
+            <div class="container">
+ 
+                <div class="row">
+                    <div class="col-12">
+
+<ul>
+  <li><a href="{{ path('article_conventions')}}">Conventions</a></li>
+  <li><a href="{{ path('article_codes')}}">Codes </a></li>
+  <li><a href="{{ path('article_loisetdecrets')}}">Lois et décrets</a></li>
+  <li><a href="{{ path('article_actualites')}}">Actualités</a></li>
+</ul>
+{% for article in articles %}
+<div class="container">
+<section class="articles mt-5" >
+<article>
+<div class="titre">{{article.title}}</div>
+<div class="metadata">{{article.CreateAt | date('d-m-y')}} à {{article.CreateAt | date('H:i'
+)}}</div>
+<div class="content">
+	<p><a href="{{ asset('uploads/brochures/' ~ article.brochureFilename) }}"><img src="{{ asset('assests/img/transmission-download-icon.png')}}"/></a></p>
+</div>
+</article>
+</section>
+
+</div></div>
+</div>
+
+{% endfor %}
+{# display navigation #}
+<div class="container navigation mt-5">
+    {{ knp_pagination_render(articles) }}
+</div>
+
+</div></div></div></section>
+{% endblock %}

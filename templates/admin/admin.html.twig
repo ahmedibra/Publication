@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+<section class="contact-section">
+            <div class="container">
+ 
+                <div class="row">
+    <table>
+                <tr><td><a href="{{ path('admin') }}" class="btn btn-info btn-xs pull-right mb-10 mt-10"> Gérer les publications</a></td>
+                <td><a href="{{ path('question_reponse_admin') }}" class="btn btn-info btn-xs pull-right mb-10 mt-10"> Gérer question/reponse</a></td></tr></table>
+                    <div class="col-12">
+    <div class="row col-md-12 col-md-offset-2 custyle">
+  
+    <table class="table table-striped custab">
+    <thead>
+    <a href="{{ path('article_new') }}" class="btn btn-primary btn-xs pull-right"><b>+</b> Ajouter une publication</a>
+    <hr>
+        <tr>
+            <th>Titre</th>
+            <th>Créer le</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    {% for article in articles %}
+            <tr>
+                <td>{{article.title}}</td>
+                <td>{{article.CreateAt | date('d-m-y')}} à {{article.CreateAt | date('H:i')}}</td>
+                <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('article_edit', {'id' : article.id} ) }}">
+                <span class="glyphicon glyphicon-edit"></span> Modifier</a> <a href="{{ path('article_delete', {'id' : article.id} ) }}"  class="btn btn-danger btn-xs">
+                <span class="glyphicon glyphicon-remove"></span> Supprimer</a></td>
+            </tr>
+            {% endfor %}
+    </table>
+    {# display navigation #}
+<div class="container navigation mt-5">
+    {{ knp_pagination_render(articles) }}
+</div>
+    </div>
+</div>
+</div></div>
+</section>
+{% endblock %}

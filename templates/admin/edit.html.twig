@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% form_theme editForm 'bootstrap_4_layout.html.twig' %}
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+<section class="contact-section">
+            <div class="container">
+ 
+                <div class="row">
+                    <div class="col-12">
+<h1>Remplir votre question</h1>
+{{ form_start(editForm)}}
+{{form_widget(editForm)}}
+<button class="btn btn-success">Envoyer</button>
+{{ form_end(editForm)}}
+</div></div></div>
+</section>
+{% endblock %}

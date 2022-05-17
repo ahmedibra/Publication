@@ -2,18 +2,183 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
+        <title>Cabinet M.Fawzi ben chabaane </title>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="site.webmanifest">
+		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assests/img/favicon.ico') }}">
         {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
-
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
+		<!-- CSS here -->
+            <link rel="stylesheet" href="{{ asset('assests/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assests/css/owl.carousel.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assests/css/slicknav.css') }}">
+            <link rel="stylesheet" href="{{ asset('assests/css/flaticon.css') }}">
+            <link rel="stylesheet" href="{{ asset('assests/css/animate.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assests/css/magnific-popup.css') }}">
+            <link rel="stylesheet" href="{{ asset('assests/css/fontawesome-all.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assests/css/themify-icons.css') }}">
+            <link rel="stylesheet" href="{{ asset('assests/css/slick.css') }}">
+            <link rel="stylesheet" href="{{ asset('assests/css/nice-select.css') }}">
+            <link rel="stylesheet" href="{{ asset('assests/css/style.css') }}">
+            {% endblock %}
+   </head>
     <body>
-        {% block body %}{% endblock %}
+
+        {% block header %}
+<header>
+        <!-- Header Start -->
+        <div class="header-area header-transparent">
+                <div class="main-header">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-3 col-lg-3 col-md-1">  
+                            <div class="logo">                             
+                                <div class="team-caption">
+                                <a href="{{ path('home')}}"><h2>Cabinet Fawzi Ben Chaabane</h2></a>
+                                <h6 style="margin-left: 20px;">Expert-comptable</h6>
+                            </div>
+                        </div>
+                            </div>
+                            <div class="col-xl-9 col-lg-9 col-md-1">
+                            <div class="menu-main d-flex align-items-center justify-content-end">
+                                <!-- Main-menu -->
+                                <div class="main-menu f-right d-none d-lg-block">
+                                    <nav> 
+                                        <ul id="navigation">  
+                                            <li><a href="{{ path('home')}}">Accueil</a></li>
+                                            <li><a href="{{ path('services')}}">services</a></li>
+                                            <li><a href="{{ path('article_conventions')}}">publications</a></li>
+                                            <li><a href="{{ path('question_reponse')}}">Question/Réponse</a></li>
+                                            <li><a href="{{ path('contact')}}">Contact</a></li>
+                                            {% if app.user%}
+                                            <li><a href="{{ path('app_logout')}}">Déconnecter</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </nav>
+                                </div>
+                                
+                            </div>
+                            </div>   
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <hr>
+         {% endblock %}
+        {% block body %}
+
+        {% endblock %}
+          {% block footer %}
+          <footer>
+        <!-- Footer Start-->
+        <div class="footer-area">
+            <div class="container">
+               <div class="footer-top footer-padding">
+                    <div class="row justify-content-between">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                            <div class="single-footer-caption mb-50">
+                                <div class="single-footer-caption mb-30">
+                                    <!-- logo -->
+                                    <div class="footer-logo">
+                                      <a href="{{ path('home')}}"> <h2 style="color: #f9f9ff;">Cabinet Fawzi Ben chaabane</h2></a>
+                                    </div>
+                                    <div class="footer-pera">
+                                        <p>Cabinet d'expertise comptable crée depuis Mars 1984 et inscrit à l'Odre des Experts Comptables de Tunisie (O.E.C.T) depuis Janvier 1998</p>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Qui Sommes Nous</h4>
+                                    <ul>
+                                        <li><a href="{{ path('home')}}">À Propos de nous</a></li>
+                                        <li><a href="{{ path('services')}}">Services que nous fournissons</a></li>
+                                        <li><a href="{{ path('home')}}">Pourquoi choisir notre entreprise</a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Nos Services</h4>
+                                    <ul>
+                                        <li><a href="{{ path('services')}}">Services que nous fournissons</a></li>     
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Contact</h4>
+                                    <ul>
+                                        <li><a href="{{ path('contact')}}">Contactez nous</a></li>   
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+           {% endblock %}
+        
+        {% block javascripts %}
+        <!-- JS here -->
+		<!-- All JS Custom Plugins Link Here here -->
+        <script src="{{ asset('assests/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+		<!-- Jquery, Popper, Bootstrap -->
+		<script src="{{ asset('assests/js/vendor/jquery-1.12.4.min.js') }}"></script>
+        <script src="{{ asset('assests/js/popper.min.js') }}"></script>
+        <script src="{{ asset('assests/js/bootstrap.min.js') }}"></script>
+	    <!-- Jquery Mobile Menu -->
+        <script src="{{ asset('assests/js/jquery.slicknav.min.js') }}"></script>
+
+		<!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="{{ asset('assests/js/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('assests/js/slick.min.js') }}"></script>
+		<!-- One Page, Animated-HeadLin -->
+        <script src="{{ asset('assests/js/wow.min.js') }}"></script>
+		<script src="{{ asset('assests/js/animated.headline.js') }}"></script>
+        <script src="{{ asset('assests/js/jquery.magnific-popup.js') }}"></script>
+
+		<!-- Nice-select, sticky -->
+        <script src="{{ asset('assests/js/jquery.nice-select.min.js') }}"></script>
+		<script src="{{ asset('assests/js/jquery.sticky.js') }}"></script>
+        
+        <!-- contact js -->
+        <script src="{{ asset('assests/js/contact.js') }}"></script>
+        <script src="{{ asset('assests/js/jquery.form.js') }}"></script>
+        <script src="{{ asset('assests/js/jquery.validate.min.js') }}"></script>
+        <script src="{{ asset('assests/js/mail-script.js') }}"></script>
+        <script src="{{ asset('assests/js/jquery.ajaxchimp.min.js') }}"></script>
+        
+		<!-- Jquery Plugins, main Jquery -->	
+        <script src="{{ asset('assests/js/plugins.js') }}"></script>
+        <script src="{{ asset('assests/js/main.js') }}"></script>
+
+              <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    
+        {% endblock %}
     </body>
 </html>

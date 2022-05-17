@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+<style>
+    .articles{
+    	border-radius: 10px;
+    	box-shadow: 0 4px 16px rgba(0,0,0,.25);
+    	padding: 16px 20px ;}
+    img{
+    		border-radius: 10px;
+    		box-shadow: 0 4px 16px rgba(0,0,0,.25);
+    	}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+ 
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 20px;
+  text-decoration: none;
+}
+
+li a:hover {
+background-color: #000;
+}
+</style>
+<section class="contact-section">
+            <div class="container">
+ 
+                <div class="row">
+                    <div class="col-12">
+
+<ul>
+  <li><a href="#home">Conventions</a></li>
+  <li><a href="#news">Codes </a></li>
+  <li><a href="#contact">Lois et décrets</a></li>
+  <li><a href="#about">Actualités</a></li>
+</ul>
+{% for article in articles %}
+<div class="container">
+<section class="articles mt-5" >
+<article>
+<h2>{{article.title}}</h2>
+<div class="metadata">{{article.CreateAt | date('d-m-y')}} à {{article.CreateAt | date('H:i'
+)}}<span class="badge badge-success">{{article.comments| length}}Comment</span></div>
+<div class="content">
+	<img src="/images/products/{{ article.imageName}}">
+	<p>{{article.Texte}}
+</p>
+	<a class="btn btn-info" href="{{ path('article_show', {'id' : article.id} ) }}">lire plus</a>
+</div>
+</article>
+</section>
+
+</div></div>
+</div>
+
+{% endfor %}
+{# display navigation #}
+<div class="container navigation mt-5">
+    {{ knp_pagination_render(articles) }}
+</div>
+
+</div></div></div></section>
+{% endblock %}

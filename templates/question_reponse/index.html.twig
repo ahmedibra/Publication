@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+{% block title %}Question/Réponse{% endblock %}
+
+{% block body %}
+<section class="contact-section">
+            <div class="container">
+ 
+                <div class="row">
+                    <div class="col-12">
+
+    <a href="{{ path('question_reponse_new') }}" class="btn btn-primary btn-xs pull-right"><b>+</b> Ajouter une Question</a>
+    <div class="container">
+	<div class="row">
+	    <br/>
+        <div class="panel panel-primary">
+             <div class="panel-heading">
+            <div class="comments-area">
+            {% for questionReponse in questionReponses %}
+                     <div class="comment-list">
+                        <div class="single-comment justify-content-between d-flex">
+                           <div class="user justify-content-between d-flex">
+                              <div class="thumb">
+                                 <h3>Question</h3>
+                              </div>
+                              <div class="desc">
+                                 <p class="comment">
+                                   {{questionReponse.question}}
+                                 </p>
+                                 <div class="d-flex justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                       <h5>
+                                          <a href="#">{{ questionReponse.user.firstName }} {{ questionReponse.user.lastName}}</a>
+                                       </h5>
+                                       <p class="date" style="color:green;">{{ questionReponse.CreatedAt | date('d-m-y') }} à {{ questionReponse.CreatedAt | date('H:i') }}</p>
+                                    </div>
+                                     {% if app.user ==  questionReponse.user %}
+                                    <div class="reply-btn">
+                                       <a href="{{ path('question_reponse_edit', {'id' : questionReponse.id} ) }}" class="btn-reply text-uppercase" style="color:green;">Modifier</a>
+                                       
+                                    </div>
+                                    <div class="reply-btn">
+                                       <a href=" {{ path('question_reponse_delete', {'id' : questionReponse.id} ) }}" class="btn-reply text-uppercase" style="color:green;">Supprimer</a>
+                                       
+                                    </div>
+                                    {% endif %}
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="comment-list">
+                        <div class="single-comment justify-content-between d-flex">
+                           <div class="user justify-content-between d-flex">
+                              <div class="thumb">
+                                 <h3>Réponse</h3>
+                              </div>
+                              <div class="desc">
+                                 <p class="comment">
+                                    {{questionReponse.reponse}}
+                                 </p>
+                    
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     {% endfor %}
+                  </div>
+             </div>
+        </div>
+        
+    </div>
+    </div>
+    {# display navigation #}
+<div class="container navigation mt-5">
+    {{ knp_pagination_render(questionReponses) }}
+</div>
+    </div>
+</div>
+</div>
+</div></div>
+</section>
+{% endblock %}
